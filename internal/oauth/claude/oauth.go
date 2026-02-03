@@ -23,6 +23,7 @@ func AuthorizeURL(verifier, challenge string) (string, error) {
 		return "", err
 	}
 	q := u.Query()
+	q.Set("code", "true")
 	q.Set("response_type", "code")
 	q.Set("client_id", clientId)
 	q.Set("redirect_uri", "https://console.anthropic.com/oauth/code/callback")

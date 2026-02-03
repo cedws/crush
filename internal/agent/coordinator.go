@@ -578,10 +578,17 @@ func (c *coordinator) buildAnthropicProvider(baseURL, apiKey string, headers map
 		opts = append(opts, anthropic.WithBaseURL(baseURL))
 	}
 
+	var transport http.RoundTripper = http.DefaultTransport
 	if c.cfg.Options.Debug {
-		httpClient := log.NewHTTPClient()
-		opts = append(opts, anthropic.WithHTTPClient(httpClient))
+		transport = &log.HTTPRoundTripLogger{Transport: transport}
 	}
+	if isOauth {
+		transport = &claudeCodeRoundTripper{base: transport}
+	}
+	if transport != http.DefaultTransport {
+		opts = append(opts, anthropic.WithHTTPClient(&http.Client{Transport: transport}))
+	}
+
 	return anthropic.New(opts...)
 }
 

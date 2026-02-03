@@ -22,6 +22,7 @@ import (
 	"github.com/charmbracelet/crush/internal/oauth/claude"
 	"github.com/charmbracelet/crush/internal/oauth/copilot"
 	"github.com/charmbracelet/crush/internal/oauth/hyper"
+	"github.com/charmbracelet/crush/internal/version"
 	"github.com/invopop/jsonschema"
 	"github.com/tidwall/gjson"
 	"github.com/tidwall/sjson"
@@ -163,14 +164,18 @@ func (pc *ProviderConfig) ToProvider() catwalk.Provider {
 func (pc *ProviderConfig) SetupClaudeCode() {
 	pc.SystemPromptPrefix = "You are Claude Code, Anthropic's official CLI for Claude."
 	pc.ExtraHeaders["anthropic-version"] = "2023-06-01"
+	pc.ExtraHeaders["anthropic-dangerous-direct-browser-access"] = "true"
+	pc.ExtraHeaders["user-agent"] = fmt.Sprintf("claude-cli/%s (external, cli)", version.Version)
+	pc.ExtraHeaders["x-app"] = "cli"
 
 	value := pc.ExtraHeaders["anthropic-beta"]
-	const want = "oauth-2025-04-20"
-	if !strings.Contains(value, want) {
-		if value != "" {
-			value += ","
+	for _, want := range []string{"oauth-2025-04-20", "claude-code-20250219"} {
+		if !strings.Contains(value, want) {
+			if value != "" {
+				value += ","
+			}
+			value += want
 		}
-		value += want
 	}
 	pc.ExtraHeaders["anthropic-beta"] = value
 }
