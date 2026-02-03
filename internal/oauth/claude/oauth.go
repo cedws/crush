@@ -16,7 +16,7 @@ import (
 
 const clientId = "9d1c250a-e61b-44d9-88ed-5944d1962f5e"
 
-// AuthorizeURL returns the Claude Code Max OAuth2 authorization URL.
+// AuthorizeURL returns the Claude Code OAuth2 authorization URL.
 func AuthorizeURL(verifier, challenge string) (string, error) {
 	u, err := url.Parse("https://claude.ai/oauth/authorize")
 	if err != nil {

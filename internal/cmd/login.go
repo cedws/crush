@@ -31,7 +31,7 @@ Available platforms are: hyper, claude, copilot.`,
 # Authenticate with Charm Hyper
 crush login
 
-# Authenticate with Claude Code Max
+# Authenticate with Claude Code
 crush login claude
 
 # Authenticate with GitHub Copilot
@@ -150,7 +150,7 @@ func loginClaude() error {
 	if err != nil {
 		return err
 	}
-	fmt.Println("Open the following URL and follow the instructions to authenticate with Claude Code Max:")
+	fmt.Println("Open the following URL and follow the instructions to authenticate with Claude Code:")
 	fmt.Println()
 	fmt.Println(lipgloss.NewStyle().Hyperlink(url, "id=claude").Render(url))
 	fmt.Println()
@@ -183,7 +183,7 @@ func loginClaude() error {
 	}
 
 	fmt.Println()
-	fmt.Println("You're now authenticated with Claude Code Max!")
+	fmt.Println("You're now authenticated with Claude Code!")
 	return nil
 }
 
