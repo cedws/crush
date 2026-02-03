@@ -1,3 +1,6 @@
+> [!WARNING]
+> This project is a fork of [charmbracelet/crush](https://github.com/charmbracelet/crush) with working Claude Code support. **Usage is at your own risk.** This functionality violates Anthropic's Terms of Service. To log in with OAuth, use `crush login claude`.
+
 # Crush
 
 <p align="center">
