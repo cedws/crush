@@ -1,6 +1,25 @@
 > [!WARNING]
 > This project is a fork of [charmbracelet/crush](https://github.com/charmbracelet/crush) with working Claude Code support. **Usage is at your own risk.** This functionality violates Anthropic's Terms of Service. To log in with OAuth, use `crush login claude`.
 
+## Installation
+
+### Brew
+
+Binaries are not notarised on macOS.
+
+```bash
+brew install cedws/tap/crush
+```
+
+### Scoop
+
+```powershell
+scoop bucket add cedws https://github.com/cedws/scoop-bucket.git
+scoop install crush
+```
+
+---
+
 # Crush
 
 <p align="center">
